@@ -1,0 +1,71 @@
+
+    <p>
+        Nome:
+        <!-- <input type="text" [value]="produto.nome"> Apenas altera o valor do elemento html    --> 
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.nome" name="nome">
+    
+    </p>
+    
+    <p>
+        Produtor:
+        <!-- <input type="text" [value]="produto.valor"> Apenas altera o valor do elemento html -->
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.produtor" name="produtor">
+    </p>
+
+    <p>
+        Valor:
+        <!-- <input type="text" [value]="produto.valor"> Apenas altera o valor do elemento html -->
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.valor" name="valor">
+    </p>
+
+    <p>
+        Safra:
+        <!-- <input type="text" [value]="produto.valor"> Apenas altera o valor do elemento html -->
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.safra" name="safra">
+    </p>
+
+    <p>
+        Nacionalidade:
+        <!-- <input type="text" [value]="produto.valor"> Apenas altera o valor do elemento html -->
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.nacionalidade" name="nacionalidade">
+    </p>
+
+    <p>
+        Tipo:
+        <!-- <input type="text" [value]="produto.valor"> Apenas altera o valor do elemento html -->
+        <!-- <input type="text" [value]="produto.nome" (input)="produto.nome=$event.target.value">     -->
+        <input type="text" [(ngModel)]="vinho.tipo" name="tipo">
+    </p>
+    
+    <p>
+        <input type="button" (click)="adicionarVinho(vinho)" value="Adicionar">
+    </p>
+    
+
+    <table *ngIf="vinhos.length > 0">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Produtor</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Nacionalidade</th>
+                <th>Safra</th>
+            </tr>        
+        </thead>
+        <tbody>
+                <tr *ngFor="let vinho of vinhos">
+                        <td>{{vinho.nome}}</td>
+                        <td>{{vinho.produtor}}</td>
+                        <td>{{vinho.valor}}</td>
+                        <td>{{vinho.tipo}}</td>
+                        <td>{{vinho.nacionalidade}}</td>
+                        <td>{{vinho.safra}}</td>
+                    </tr>
+        </tbody>
+    </table>
