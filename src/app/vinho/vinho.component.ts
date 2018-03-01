@@ -11,7 +11,7 @@ export class VinhoComponent {
     mostra: Boolean;
     vinhos: Array<Vinho> = new Array();
     constructor() {
-       this.vinho = new Vinho('', '', 0);
+       this.vinho = new Vinho();
     }
     mostraDeVezEmQuando() {
         this.mostra = !this.mostra;
@@ -19,14 +19,14 @@ export class VinhoComponent {
     verificaVinho(vinho: Vinho): Boolean {
         return vinho.nome != null && vinho.valor != null && vinho.produtor != null;
     }
-    verificaSeObjetoEstaVazio(objeto: any): Boolean {
-        let objetoEstaVazio: Boolean = true;
+    verificaSeObjetoInconsistente(objeto: any, propertiesObrigatorias: Array<String>): Boolean {
+        let objetoInconsistente: Boolean = false;
         for (const key in objeto) {
-            if (<Boolean>objeto[key]) {
-                objetoEstaVazio = false;
+            if (<Boolean>!objeto[key] && propertiesObrigatorias.indexOf(key) > -1) {
+                objetoInconsistente = true;
             }
         }
-        return objetoEstaVazio;
+        return objetoInconsistente;
     }
     limpaObjeto(objeto: any) {
         for (const key in objeto) {
@@ -36,7 +36,7 @@ export class VinhoComponent {
         }
     }
     adicionarVinho(vinho: Vinho) {
-        if (!this.verificaSeObjetoEstaVazio(vinho)) {
+        if (!this.verificaSeObjetoInconsistente(vinho, ['nome', 'produtor', 'valor'])) {
             const vinhoCopy = Object.assign({}, vinho);
             this.vinhos.push(vinhoCopy);
             this.limpaObjeto(this.vinho);
@@ -47,3 +47,5 @@ export class VinhoComponent {
 
 
 }
+
+//https://github.com/tiagolisalves/vinhos-frontend-projeto
